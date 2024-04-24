@@ -25,3 +25,5 @@ like it's being done in:
 https://github.com/RaisinTen/perftrace/blob/479fad048c63ce677a123bdd711c1bef8ba2b68e/example.js#L14-L27
 
 After running `node example.js`, the generated `events.json` file can be opened on [https://ui.perfetto.dev](https://ui.perfetto.dev) for visualization:
+
+![](./example-perfetto.png)
