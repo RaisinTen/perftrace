@@ -1,12 +1,17 @@
 {
   "name": "perftrace",
   "version": "1.0.0",
-  "description": "",
+  "description": "Record PerformanceEntry objects from Node.js and the Web in the Trace Event Format, so that it can be visualized on https://ui.perfetto.dev.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:RaisinTen/perftrace.git"
+  },
+  "homepage": "https://github.com/RaisinTen/perftrace?tab=readme-ov-file#perftrace",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["performance", "tracing", "trace event", "perfetto"],
+  "author": "Darshan Sen",
   "license": "MIT"
 }
