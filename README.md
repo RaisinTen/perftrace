@@ -6,11 +6,11 @@ Record [`PerformanceEntry`](https://w3c.github.io/performance-timeline/#dom-perf
 
 A new `TraceEvents` object is created in:
 
-https://github.com/RaisinTen/perftrace/blob/479fad048c63ce677a123bdd711c1bef8ba2b68e/example.js#L6
+https://github.com/RaisinTen/perftrace/blob/18b4235b2b21d61a5aa167bf5e9c26cd5c6d90dc/example.js#L6
 
 Before the process exits, the `TraceEvents` object is destroyed and the trace events are stringified and printed to `events.json` in:
 
-https://github.com/RaisinTen/perftrace/blob/479fad048c63ce677a123bdd711c1bef8ba2b68e/example.js#L8-L12
+https://github.com/RaisinTen/perftrace/blob/18b4235b2b21d61a5aa167bf5e9c26cd5c6d90dc/example.js#L8-L12
 
 The code that needs to be profiled can be done using the `peformance.measure()` and `peformance.mark()` APIs from [Node.js](https://nodejs.org/api/perf_hooks.html#performancemarkname-options) and the [Web](https://www.w3.org/TR/user-timing):
 
@@ -22,7 +22,7 @@ performance.measure("after", "before");
 
 like it's being done in:
 
-https://github.com/RaisinTen/perftrace/blob/479fad048c63ce677a123bdd711c1bef8ba2b68e/example.js#L14-L27
+https://github.com/RaisinTen/perftrace/blob/18b4235b2b21d61a5aa167bf5e9c26cd5c6d90dc/example.js#L14-L26
 
 After running `node example.js`, the generated `events.json` file can be opened on [https://ui.perfetto.dev](https://ui.perfetto.dev) for visualization:
 
