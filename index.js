@@ -32,4 +32,25 @@ class TraceEvents {
   }
 }
 
-module.exports = { TraceEvents };
+// Monkey patching require().
+// Refs: https://stackoverflow.com/a/42883538
+const Module = require('module');
+const originalRequire = Module.prototype.require;
+
+function trackRequires(shouldTrackRequires) {
+  if (shouldTrackRequires) {
+    Module.prototype.require = function () {
+      performance.mark(`require("${arguments[0]}")`);
+      const ret = originalRequire.apply(this, arguments);
+      performance.measure(`require("${arguments[0]}")`, `require("${arguments[0]}")`);
+      return ret;
+    };
+  } else {
+    Module.prototype.require = originalRequire;
+  }
+}
+
+module.exports = {
+  TraceEvents,
+  trackRequires,
+};
