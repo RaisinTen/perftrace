@@ -13,15 +13,14 @@ process.on("beforeExit", () => {
 
 performance.mark("A");
 setTimeout(() => {
-  performance.measure("A", "A"); // 0s - 1s
+  performance.measure("A", "A");    // 2s [0s - 2s]
+}, 2000);
 
-  performance.mark("B");
-  setTimeout(() => {
-    performance.measure("B", "B"); // 1s - 3s
-  }, 2000);
-
+performance.mark("B");
+setTimeout(() => {
+  performance.measure("B", "B");    // 1s [0s - 1s]
   performance.mark("C");
   setTimeout(() => {
-    performance.measure("C", "C"); // 1s - 2s
-  }, 1000);
+    performance.measure("C", "C");  // 2s [1s - 3s]
+  }, 2000);
 }, 1000);

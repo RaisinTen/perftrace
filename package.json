@@ -9,7 +9,7 @@
   "homepage": "https://github.com/RaisinTen/perftrace?tab=readme-ov-file#perftrace",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test"
   },
   "keywords": ["performance", "tracing", "trace event", "perfetto"],
   "author": "Darshan Sen",

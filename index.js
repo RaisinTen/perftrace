@@ -12,15 +12,10 @@ class TraceEvents {
         this._eventObjects.push({
           name: measure.name,
           cat: measure.entryType,
-          ph: "B",
+          ph: "X",
           pid: 1,
           ts: Math.round(measure.startTime * 1000),
-        });
-        this._eventObjects.push({
-          cat: measure.entryType,
-          ph: "E",
-          pid: 1,
-          ts: Math.round((measure.startTime + measure.duration) * 1000),
+          dur: Math.round(measure.duration * 1000),
         });
       });
     });
