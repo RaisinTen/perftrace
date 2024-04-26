@@ -1,5 +1,5 @@
 const { ok } = require("node:assert");
-const { TraceEvents } = require("..");
+const { TraceEvents, trackRequires } = require("..");
 const { after, before, describe, test } = require("node:test");
 const { performance } = require("node:perf_hooks");
 
@@ -59,6 +59,33 @@ describe("interleaved events", async () => {
 
     ok((C.dur / 1e6) >= 1.9);
     ok((C.dur / 1e6) <= 2.1);
+  });
+
+  after(() => {
+    traceEvents.destroy();
+  });
+});
+
+describe("track requires", async () => {
+  let traceEvents;
+
+  await before(async () => {
+    traceEvents = new TraceEvents();
+    console.log(traceEvents);
+    trackRequires(true);
+    require("node:tls");
+    trackRequires(false);
+    require("node:net");
+
+    return new Promise((resolve, reject) => setImmediate(resolve));
+  });
+
+  test("find events", () => {
+    const events = traceEvents.getEvents();
+    const requireTls = events.find((element) => element.name === `require("node:tls")`);
+    ok(requireTls);
+    const requireNet = events.find((element) => element.name === `require("node:net")`);
+    ok(!requireNet);
   });
 
   after(() => {
