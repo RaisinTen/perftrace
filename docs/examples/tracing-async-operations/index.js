@@ -1,4 +1,4 @@
-const { TraceEvents } = require(".");
+const { TraceEvents } = require("../../..");
 
 const { performance } = require("node:perf_hooks");
 const { writeFileSync } = require("node:fs");
