@@ -1,0 +1,9 @@
+{
+  "name": "tracing-async-operations",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tracing async operations",
+  "main": "index.js",
+  "author": "Darshan Sen",
+  "license": "MIT"
+}
