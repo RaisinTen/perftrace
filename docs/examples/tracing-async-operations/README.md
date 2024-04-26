@@ -22,4 +22,4 @@ https://github.com/RaisinTen/perftrace/blob/e9df1f8c4488a69c9051e8a62f0896ca7af6
 
 After running `node .`, the generated `events.json` file can be opened on [https://ui.perfetto.dev](https://ui.perfetto.dev) for visualization:
 
-TODO
+![](./perfetto.png)
