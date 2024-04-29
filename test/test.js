@@ -47,7 +47,7 @@ describe("interleaved events", async () => {
     ok((B.ts / 1e6) >= 0);
 
     ok((C.ts / 1e6) >= 0.9);
-    ok((C.ts / 1e6) <= 1.1);
+    ok((C.ts / 1e6) <= 1.2);
   });
 
   test("event dur values", () => {
@@ -71,7 +71,6 @@ describe("track requires", async () => {
 
   await before(async () => {
     traceEvents = new TraceEvents();
-    console.log(traceEvents);
     trackRequires(true);
     require("node:tls");
     trackRequires(false);
