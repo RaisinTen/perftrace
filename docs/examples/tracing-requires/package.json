@@ -1,0 +1,12 @@
+{
+  "name": "tracing-requires",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tracing require()s",
+  "main": "index.js",
+  "author": "Darshan Sen",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
