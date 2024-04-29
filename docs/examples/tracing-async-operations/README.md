@@ -20,6 +20,6 @@ like it's being done in:
 
 https://github.com/RaisinTen/perftrace/blob/e9df1f8c4488a69c9051e8a62f0896ca7af677a6/docs/examples/tracing-async-operations/index.js#L14-L26
 
-After running `node .`, the generated `events.json` file can be opened on [https://ui.perfetto.dev](https://ui.perfetto.dev) for visualization:
+After running `node .`, the generated `events.json` file can be opened on <https://ui.perfetto.dev> for visualization:
 
 ![](./perfetto.png)
