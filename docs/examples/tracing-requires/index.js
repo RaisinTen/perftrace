@@ -1,4 +1,4 @@
-const { TraceEvents, trackRequires } = require("../../..");
+const { TraceEvents, trackRequires } = require("../../../index.cjs");
 const { writeFileSync } = require('fs');
 
 const traceEvents = new TraceEvents();
