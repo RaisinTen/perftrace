@@ -40,12 +40,13 @@ describe("interleaved events", async () => {
   });
 
   it("event ts values", () => {
-    expect(A.ts / 1e6).to.be.greaterThanOrEqual(0);
+    expect(A.ts).to.be.greaterThanOrEqual(0);
 
-    expect(B.ts / 1e6).to.be.greaterThanOrEqual(0);
+    expect((B.ts - A.ts) / 1e6).to.be.greaterThanOrEqual(0);
+    expect((B.ts - A.ts) / 1e6).to.be.lessThanOrEqual(0.1);
 
-    expect(C.ts / 1e6).to.be.greaterThanOrEqual(0.3);
-    expect(C.ts / 1e6).to.be.lessThanOrEqual(1);
+    expect(C.ts - B.ts).to.be.greaterThanOrEqual(B.dur);
+    expect(C.ts - B.ts).to.be.lessThanOrEqual(B.dur + 0.1 * 1e6);
   });
 
   it("event dur values", () => {
