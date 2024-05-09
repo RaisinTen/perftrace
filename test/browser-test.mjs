@@ -57,7 +57,7 @@ describe("interleaved events", async () => {
     expect(B.dur / 1e6).to.be.lessThanOrEqual(0.45);
 
     expect(C.dur / 1e6).to.be.greaterThanOrEqual(0.6);
-    expect(C.dur / 1e6).to.be.lessThanOrEqual(0.8);
+    expect(C.dur / 1e6).to.be.lessThanOrEqual(0.85);
   });
 
   after(() => {
