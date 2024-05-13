@@ -39,3 +39,7 @@ https://github.com/RaisinTen/perftrace/blob/fbb0d21f13329eee9912373482e7821f6144
 After running `node server.js`, opening <http://localhost:8080> in your browser and clicking the `Submit trace` button, the generated `events.json` file can be opened on <https://ui.perfetto.dev> for visualization:
 
 ![](./perfetto.png)
+
+Here's a demo:
+
+![](./perftrace-web.mp4)
