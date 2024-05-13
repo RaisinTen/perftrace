@@ -20,7 +20,7 @@ class TraceEvents {
       });
     });
 
-    this._observer.observe({ entryTypes: ['measure'], buffered: true });
+    this._observer.observe({ type: 'measure', buffered: true });
   }
 
   destroy() {

@@ -7,9 +7,16 @@
     "url": "git@github.com:RaisinTen/perftrace.git"
   },
   "homepage": "https://github.com/RaisinTen/perftrace?tab=readme-ov-file#perftrace",
-  "main": "index.js",
+  "main": "index.mjs",
+  "type": "module",
+  "exports": {
+    "import": "index.mjs",
+    "require": "index.cjs"
+  },
   "scripts": {
-    "test": "node --test"
+    "test": "npm run test:node && npm run test:browser",
+    "test:node": "node --test \"test/node-test.cjs\"",
+    "test:browser": "wtr --playwright --browsers chromium firefox webkit --node-resolve test/browser-test.mjs"
   },
   "keywords": [
     "performance",
@@ -18,5 +25,10 @@
     "perfetto"
   ],
   "author": "Darshan Sen",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@esm-bundle/chai": "^4.3.4-fix.0",
+    "@web/test-runner": "^0.18.1",
+    "@web/test-runner-playwright": "^0.11.0"
+  }
 }

@@ -1,0 +1,9 @@
+{
+  "name": "client-side-use-on-web-browser",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Client-side use on Web Browser",
+  "main": "server.js",
+  "author": "Darshan Sen",
+  "license": "MIT"
+}

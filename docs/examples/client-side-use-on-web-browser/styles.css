@@ -1,0 +1,41 @@
+body {
+  background-color: mistyrose;
+}
+
+/*
+ * Loaded CSS
+ * Refs: https://www.w3schools.com/howto/howto_css_loader.asp
+ */
+
+.loader {
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #3498db;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+
+  /* Positioning the loaders at the same position as the loading text. */
+  margin-top: -20px;
+  margin-bottom: 25px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.data {
+  font-size: 30px;
+}
+
+.submit {
+  font-size: 25px;
+}
