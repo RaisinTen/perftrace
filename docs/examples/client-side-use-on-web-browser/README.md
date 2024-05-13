@@ -42,4 +42,4 @@ After running `node server.js`, opening <http://localhost:8080> in your browser 
 
 Here's a demo:
 
-![](./perftrace-web.mp4)
+![](./perftrace-web.gif)
