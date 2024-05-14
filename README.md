@@ -6,6 +6,10 @@ Record [`PerformanceEntry`](https://w3c.github.io/performance-timeline/#dom-perf
 
 The code for this example is available [here](docs/examples/tracing-requires).
 
+![](./docs/examples/client-side-use-on-web-browser/perftrace-web.gif)
+
+The code for this example is available [here](docs/examples/client-side-use-on-web-browser).
+
 Check out <a href="https://dev.to/raisinten/visualize-performance-issues-in-your-javascript-application-4cnc">the blog <img src="https://avatars2.githubusercontent.com/u/13521919?s=200&v=4" width="25px"></a>!
 
 ## Install
