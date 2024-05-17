@@ -14,8 +14,18 @@ Check out <a href="https://dev.to/raisinten/visualize-performance-issues-in-your
 
 ## Install
 
+To install via [NPM](https://www.npmjs.com/package/perftrace), run:
+
 ```
 npm i perftrace
+```
+
+Alternatively, you can use it in vanilla JS, without any bundler, by using a CDN or static hosting. For example, using ES Modules, you can import the library with:
+
+```html
+<script type="module">
+  import { TraceEvents } from "https://cdn.jsdelivr.net/npm/perftrace/index.mjs";
+</script>
 ```
 
 ## Usage
