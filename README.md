@@ -75,6 +75,8 @@ setInterval(function () {
 }, 5);
 ```
 
+After running this script with `node filename.js`, open the generated `events.json` file on <https://ui.perfetto.dev>.
+
 Check out the [API documentation](docs/api) and the [code examples](docs/examples) for details.
 
 ## License
