@@ -1,4 +1,4 @@
-const { ok } = require("node:assert");
+const { ok, deepStrictEqual, strictEqual } = require("node:assert");
 const { TraceEvents, trackRequires } = require("../index.cjs");
 const { after, before, describe, test } = require("node:test");
 const { performance } = require("node:perf_hooks");
@@ -85,6 +85,52 @@ describe("track requires", async () => {
     ok(requireTls);
     const requireNet = events.find((element) => element.name === `require("node:net")`);
     ok(!requireNet);
+  });
+
+  test("source location", () => {
+    const events = traceEvents.getEvents();
+    const requireTls = events.find((element) => element.name === `require("node:tls")`);
+    ok(requireTls);
+    ok(requireTls.args);
+    strictEqual(requireTls.args.filepath, __filename);
+    strictEqual(requireTls.args.line, 75);
+    strictEqual(requireTls.args.column, 5);
+  });
+
+  after(() => {
+    traceEvents.destroy();
+  });
+});
+
+describe("metadata", async () => {
+  let traceEvents;
+  const metadata = { foo: "bar", number: 2 };
+
+  await before(async () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+
+      traceEvents = new TraceEvents();
+
+      performance.mark("UwU");
+      setTimeout(() => {
+        performance.measure(
+          "UwU",
+          {
+            detail: metadata,
+            start: "UwU",
+          });
+      }, 1000);
+    });
+  });
+
+  test("check metadata", () => {
+    const events = traceEvents.getEvents();
+    const UwU = events.find((element) => element.name === "UwU");
+    ok(UwU);
+    deepStrictEqual(UwU.args, metadata);
   });
 
   after(() => {

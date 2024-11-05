@@ -20,7 +20,8 @@ Call `traceEvents.getEvents()` to get the PerformanceEntry objects in the [Trace
     "ph": "X",
     "pid": 1,
     "ts": 34509,
-    "dur": 1004141
+    "dur": 1004141,
+    "args": null
   },
   {
     "name": "A",
@@ -28,7 +29,8 @@ Call `traceEvents.getEvents()` to get the PerformanceEntry objects in the [Trace
     "ph": "X",
     "pid": 1,
     "ts": 33837,
-    "dur": 2002098
+    "dur": 2002098,
+    "args": { "foo": "bar" }
   }
 ]
 ```
