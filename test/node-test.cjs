@@ -1,4 +1,4 @@
-const { ok } = require("node:assert");
+const { ok, deepStrictEqual, strictEqual } = require("node:assert");
 const { TraceEvents, trackRequires } = require("../index.cjs");
 const { after, before, describe, test } = require("node:test");
 const { performance } = require("node:perf_hooks");
@@ -73,6 +73,10 @@ describe("track requires", async () => {
     traceEvents = new TraceEvents();
     trackRequires(true);
     require("node:tls");
+    trackRequires(true, { trackSource: true });
+    require("node:os");
+    trackRequires(true, { trackSource: false });
+    require("node:async_hooks");
     trackRequires(false);
     require("node:net");
 
@@ -83,8 +87,66 @@ describe("track requires", async () => {
     const events = traceEvents.getEvents();
     const requireTls = events.find((element) => element.name === `require("node:tls")`);
     ok(requireTls);
+    const requireOs = events.find((element) => element.name === `require("node:os")`);
+    ok(requireOs);
+    const requireAsyncHooks = events.find((element) => element.name === `require("node:async_hooks")`);
+    ok(requireAsyncHooks);
     const requireNet = events.find((element) => element.name === `require("node:net")`);
     ok(!requireNet);
+  });
+
+  test("source location", () => {
+    const events = traceEvents.getEvents();
+
+    const requireTls = events.find((element) => element.name === `require("node:tls")`);
+    ok(requireTls);
+    strictEqual(requireTls.args, null);
+
+    const requireOs = events.find((element) => element.name === `require("node:os")`);
+    ok(requireOs);
+    ok(requireOs.args);
+    ok(requireOs.args.length > 5);
+    ok(requireOs.args[1].includes(__filename));
+
+    const requireAsyncHooks = events.find((element) => element.name === `require("node:async_hooks")`);
+    ok(requireAsyncHooks);
+    strictEqual(requireAsyncHooks.args, null);
+  });
+
+  after(() => {
+    traceEvents.destroy();
+  });
+});
+
+describe("metadata", async () => {
+  let traceEvents;
+  const metadata = { foo: "bar", number: 2 };
+
+  await before(async () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+
+      traceEvents = new TraceEvents();
+
+      performance.mark("UwU");
+      setTimeout(() => {
+        performance.measure(
+          "UwU",
+          {
+            detail: metadata,
+            start: "UwU",
+          });
+      }, 1000);
+    });
+  });
+
+  test("check metadata", () => {
+    const events = traceEvents.getEvents();
+    const UwU = events.find((element) => element.name === "UwU");
+    ok(UwU);
+    deepStrictEqual(UwU.args, metadata);
   });
 
   after(() => {

@@ -8,7 +8,7 @@ Before the process exits, the `TraceEvents` object is destroyed and the trace ev
 
 https://github.com/RaisinTen/perftrace/blob/7cb1ce34d19ed8816e15094b3ef4fd03bb157c76/docs/examples/tracing-requires/index.js#L6-L10
 
-The `require()` calls can be tracked by passing `true` to `trackRequires()` like it is being done in:
+The `require()` calls can be tracked by calling `trackRequires()` like it is being done in:
 
 https://github.com/RaisinTen/perftrace/blob/7cb1ce34d19ed8816e15094b3ef4fd03bb157c76/docs/examples/tracing-requires/index.js#L12
 

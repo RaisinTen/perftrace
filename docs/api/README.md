@@ -20,7 +20,8 @@ Call `traceEvents.getEvents()` to get the PerformanceEntry objects in the [Trace
     "ph": "X",
     "pid": 1,
     "ts": 34509,
-    "dur": 1004141
+    "dur": 1004141,
+    "args": null
   },
   {
     "name": "A",
@@ -28,11 +29,14 @@ Call `traceEvents.getEvents()` to get the PerformanceEntry objects in the [Trace
     "ph": "X",
     "pid": 1,
     "ts": 33837,
-    "dur": 2002098
+    "dur": 2002098,
+    "args": { "foo": "bar" }
   }
 ]
 ```
 
-## `trackRequires(bool)` (only available in [CommonJS](https://nodejs.org/api/modules.html#modules-commonjs-modules))
+## `trackRequires(switch, options)` (only available in [CommonJS](https://nodejs.org/api/modules.html#modules-commonjs-modules))
 
-Call `trackRequires(true)` to enable tracking `require()`s and call `trackRequires(false)` to disable tracking `require()`s.
+- `switch` (**bool**) - Call `trackRequires(true)` to enable tracking `require()`s and call `trackRequires(false)` to disable tracking `require()`s.
+- `options` (**object**)
+  - `trackSource` (**bool**) - Call `trackRequires(true, { trackSource: true })` to enable tracking `require()`s and also capture the source locations. This creates a throw-away error object and parses the `stack` property, so it introduces an overhead.
