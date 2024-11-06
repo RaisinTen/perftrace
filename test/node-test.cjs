@@ -73,6 +73,10 @@ describe("track requires", async () => {
     traceEvents = new TraceEvents();
     trackRequires(true);
     require("node:tls");
+    trackRequires(true, { trackSource: true });
+    require("node:os");
+    trackRequires(true, { trackSource: false });
+    require("node:async_hooks");
     trackRequires(false);
     require("node:net");
 
@@ -83,18 +87,30 @@ describe("track requires", async () => {
     const events = traceEvents.getEvents();
     const requireTls = events.find((element) => element.name === `require("node:tls")`);
     ok(requireTls);
+    const requireOs = events.find((element) => element.name === `require("node:os")`);
+    ok(requireOs);
+    const requireAsyncHooks = events.find((element) => element.name === `require("node:async_hooks")`);
+    ok(requireAsyncHooks);
     const requireNet = events.find((element) => element.name === `require("node:net")`);
     ok(!requireNet);
   });
 
   test("source location", () => {
     const events = traceEvents.getEvents();
+
     const requireTls = events.find((element) => element.name === `require("node:tls")`);
     ok(requireTls);
-    ok(requireTls.args);
-    strictEqual(requireTls.args.filepath, __filename);
-    strictEqual(requireTls.args.line, 75);
-    strictEqual(requireTls.args.column, 5);
+    strictEqual(requireTls.args, null);
+
+    const requireOs = events.find((element) => element.name === `require("node:os")`);
+    ok(requireOs);
+    ok(requireOs.args);
+    ok(requireOs.args.length > 5);
+    ok(requireOs.args[1].includes(__filename));
+
+    const requireAsyncHooks = events.find((element) => element.name === `require("node:async_hooks")`);
+    ok(requireAsyncHooks);
+    strictEqual(requireAsyncHooks.args, null);
   });
 
   after(() => {

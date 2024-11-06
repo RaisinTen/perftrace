@@ -9,7 +9,7 @@ process.on("beforeExit", () => {
   writeFileSync("events.json", JSON.stringify(events));
 });
 
-trackRequires(true);
+trackRequires(true, { trackSource: true });
 
 // Express Hello world example
 // Refs: https://expressjs.com/en/starter/hello-world.html

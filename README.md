@@ -46,7 +46,7 @@ process.on("beforeExit", () => {
 });
 
 // Enables tracking require() calls.
-trackRequires(true);
+trackRequires(true, { trackSource: true });
 
 // The assert module takes milliseconds to load, so it would be distinctly
 // visible in the performance trace.
